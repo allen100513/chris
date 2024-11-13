@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javaweb.mapper.UserMapper">
+    <update id="update">
+        update accounts
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+            <if test="recordSeconds != null and recordSeconds != ''">
+                    recordSeconds = #{recordSeconds},
+            </if>
+            <if test="bonus != null and bonus != ''">
+                    bonus = #{bonus},
+            </if>
+            <if test="salt != null and salt != ''">
+                salt = #{salt}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>
