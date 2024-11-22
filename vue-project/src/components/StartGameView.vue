@@ -42,7 +42,7 @@
     <div class="buttons">
       <button @click="startGame">開始遊戲</button>
       <button @click="submitAnswers" :disabled="isSubmitDisabled">提交答案</button>
-      <button @click="shutGame">結束遊戲</button>
+      <button @click="shutGame" :disabled="isShutDisabled">結束遊戲</button>
     </div>
   </div>
 </template>
@@ -61,6 +61,7 @@ export default {
       attempts: 0,
       isSubmitDisabled: true,
       isSwitchDisabled: false,
+      isShutDisabled: true
     };
   },
   methods: {
@@ -84,6 +85,7 @@ export default {
       this.attempts = 0;
       this.isSubmitDisabled = false;
       this.isSwitchDisabled = true;
+      this.isShutDisabled = false;
       this.resetTimer();
       this.fetchSudokuGrid();
       this.interval = setInterval(() => {
@@ -111,6 +113,7 @@ export default {
     shutGame() {
       this.isSubmitDisabled = true;
       this.isSwitchDisabled = false;
+      this.isShutDisabled = true;
       this.resetTimer();
       this.$Swal.fire("遊戲結束!");
     },
